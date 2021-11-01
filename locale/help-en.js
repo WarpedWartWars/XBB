@@ -1363,13 +1363,13 @@ SnapTranslator.dict.en.help_strings = {
     'reportFindFirst.p.2.Keep':
         'Keep',
     'reportFindFirst.p.2':
-        '{reportFindFirst.p.2.Find first} reports False if no item in the list matches the predicate.\n( {reportFindFirst.p.2.Keep} reports the empty list in that situation.)',
+        '{reportFindFirst.p.2.Find first} reports nothing if no item in the list matches the predicate.\n( {reportFindFirst.p.2.Keep} reports the empty list in that situation.)',
     'reportFindFirst.p.3.Find first':
         'Find first',
     'reportFindFirst.p.3.find first':
         'find first',
     'reportFindFirst.p.3':
-        '{reportFindFirst.p.3.Find first} means the same as {2} but {reportFindFirst.p.3.find first} is faster if a match is found because it doesn\'t search the rest of the list.',
+        '{reportFindFirst.p.3.Find first} is almost the same as {2} but {reportFindFirst.p.3.find first} is faster if a match is found because it doesn\'t search the rest of the list.',
 
     // reportGet
     'reportGet.header':
