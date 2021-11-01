@@ -1210,8 +1210,15 @@ ScriptDiagramMorph.prototype.init = function (
     // initialize inherited properties:
     ScriptDiagramMorph.uber.init.call(this);
 
+    this.isDraggable = false;
+    this.isTemplate = true;
+
     this.acceptsDrops = false;
     this.populateDiagram();
+};
+
+ScriptDiagramMorph.prototype.reactToTemplateCopy = function () {
+    return this.script;
 };
 
 ScriptDiagramMorph.prototype.populateDiagram = function () {
