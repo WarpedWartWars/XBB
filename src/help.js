@@ -1210,8 +1210,8 @@ ScriptDiagramMorph.prototype.init = function (
     // initialize inherited properties:
     ScriptDiagramMorph.uber.init.call(this);
 
-    this.isDraggable = false;
-    this.isTemplate = true;
+    this.isDraggable = true;
+    this.isTemplate = false;
 
     this.acceptsDrops = false;
     this.populateDiagram();
