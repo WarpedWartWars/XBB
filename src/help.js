@@ -1218,7 +1218,9 @@ ScriptDiagramMorph.prototype.init = function (
 };
 
 ScriptDiagramMorph.prototype.selectForEdit = function () {
-    return this.script.fullCopy();
+    var newscript = this.script.fullCopy();
+    newscript.setPosition(this.position());
+    return newscript;
 };
 
 ScriptDiagramMorph.prototype.populateDiagram = function () {
