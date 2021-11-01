@@ -1218,9 +1218,8 @@ ScriptDiagramMorph.prototype.init = function (
 };
 
 ScriptDiagramMorph.prototype.selectForEdit = function () {
-    var newscript = this.script.fullCopy(),
-        hand = this.parentThatIsA(WorldMorph).hand;
-    newscript.setPosition(this.script.position());
+    var newscript = this.script.fullCopy();
+    newscript.setPosition(this.position());
     return newscript;
 };
 
