@@ -103,7 +103,7 @@
                     </block>
                 </script>
                 <bubbles>
-                    <bool>false</bool>
+                    <l />
                 </bubbles>
             </diagram>
             <diagram>
@@ -137,7 +137,7 @@
             <p id="reportFindFirst.p.2">
                 <text font="Courier" id="reportFindFirst.p.2.Find first" />
                 <text font="Courier" id="reportFindFirst.p.2.Keep" />
-                </p>
+            </p>
             <p id="reportFindFirst.p.3">
                 <text font="Courier" id="reportFindFirst.p.3.Find first" />
                 <script>
@@ -153,7 +153,7 @@
                     </block>
                 </script>
                 <text font="Courier" id="reportFindFirst.p.3.find first" />
-                </p>
+            </p>
         </column>
     </box>
 </help-screen>
