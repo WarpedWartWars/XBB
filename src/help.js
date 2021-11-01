@@ -1217,7 +1217,7 @@ ScriptDiagramMorph.prototype.init = function (
     this.populateDiagram();
 };
 
-ScriptDiagramMorph.prototype.reactToTemplateCopy = function () {
+ScriptDiagramMorph.prototype.selectForEdit = function () {
     return this.script;
 };
 
