@@ -232,9 +232,9 @@ SpriteMorph.prototype.initBeetle = function () {
     // To avoid precision loss, we keep state here and perform transformations on
     // the beetle's actual properties by using these values
     this.beetle.color.state = {
-        h: 180,
-        s: 50,
-        l: 50,
+        h: 0,
+        s: 0,
+        l: 0,
         set: function (h, s, l) {
             this.h = h;
             this.s = s;
@@ -243,7 +243,7 @@ SpriteMorph.prototype.initBeetle = function () {
     }
 
     this.beetle.color.reset = function () {
-        this.state.set(180, 50, 50);
+        this.state.set(0, 0, 0);
         this.update();
         myself.beetle.shape.material.opacity = 1;
     };
@@ -327,7 +327,7 @@ SpriteMorph.prototype.initBeetle = function () {
     this.beetle.axes = [];
     // beetle's local axis lines
     p = new THREE.Vector3(1,0,0);
-    this.beetle.axes.push(this.beetle.addLineToPointWithColor(p, 0x00E11E));
+    this.beetle.axes.push(this.beetle.addLineToPointWithColor(p, 0x00FF00));
     p = new THREE.Vector3(0,1,0);
     this.beetle.axes.push(this.beetle.addLineToPointWithColor(p, 0x0000FF));
     p = new THREE.Vector3(0,0,1);
@@ -355,17 +355,17 @@ SpriteMorph.prototype.categories = [
 ];
 
 SpriteMorph.prototype.blockColor = {
-    motion : new Color(68, 95, 153),
+    motion : new Color(74, 108, 212),
     shapes : new Color(48, 137, 151),
-    colors : new Color(101, 61, 122),
+    colors : new Color(0, 161, 120),
     sound : new Color(207, 74, 217), // we need to keep this color for the zoom blocks dialog
-    control : new Color(80, 80, 80),
-    sensing : new Color(130, 130, 130),
+    control : new Color(230, 168, 34),
+    sensing : new Color(4, 148, 220),
     operators : new Color(94, 144, 52),
-    variables : new Color(191, 101, 36),
-    lists : new Color(168, 66, 32),
+    variables : new Color(103, 196, 27),
+    lists : new Color(217, 77, 17),
     other : new Color(150, 150, 150),
-    'my blocks': new Color(4, 158, 235)
+    'my blocks': new Color(150, 150, 150)
 };
 
 
@@ -392,28 +392,28 @@ SpriteMorph.prototype.initBlocks = function () {
     this.blocks.clear =
     {
         type: 'command',
-        spec: 'reset',
-        category: 'control',
+        spec: 'clear',
+        category: 'shapes',
     };
-
-    // motion
-    this.blocks.goHome =
+    this.blocks.reset =
     {
         type: 'command',
-        spec: 'go home',
-        category: 'motion'
-    };
+        spec: 'reset',
+        category: 'control'
+    }
+
+    // motion
     this.blocks.move =
     {
         type: 'command',
-        spec: 'move %n',
+        spec: 'move %n steps',
         category: 'motion',
         defaults: [1]
     };
     this.blocks.rotate =
     {
         type: 'command',
-        spec: 'rotate %axes by %n',
+        spec: 'change %axes rotation by %n',
         category: 'motion',
         defaults: ['z', 15]
     };
@@ -434,7 +434,7 @@ SpriteMorph.prototype.initBlocks = function () {
     this.blocks.changePositionBy =
     {
         type: 'command',
-        spec: 'change absolute %axes by %n',
+        spec: 'change %axes by %n',
         category: 'motion',
         defaults: ['x', 1]
     };
@@ -503,42 +503,42 @@ SpriteMorph.prototype.initBlocks = function () {
     this.blocks.cube =
     {
         type: 'command',
-        spec: 'cube Dim. %n',
+        spec: 'cube width %n',
         category: 'shapes',
         defaults: [0.5]
     };
     this.blocks.cuboid =
     {
         type: 'command',
-        spec: 'cuboid l: %n w: %n h: %n',
+        spec: 'cuboid length %n width %n height %n',
         category: 'shapes',
         defaults: [1, 0.5, 0.3]
     };
     this.blocks.sphere =
     {
         type: 'command',
-        spec: 'sphere Dia. %n',
+        spec: 'sphere diameter %n',
         category: 'shapes',
         defaults: [0.5]
     };
     this.blocks.tube =
     {
         type: 'command',
-        spec: 'tube l: %n outer: %n inner: %n',
+        spec: 'tube length %n outer diameter %n inner diameter %n',
         category: 'shapes',
         defaults: [2, 1, 0.5]
     };
     this.blocks.text =
     {
         type: 'command',
-        spec: 'text %s H: %n W: %n',
+        spec: '3D text %s height %n width %n',
         category: 'shapes',
         defaults: [localize('hello'), 1, 0.5]
     };
     this.blocks.text2D =
     {
         type: 'command',
-        spec: '2D text %s size: %n',
+        spec: '2D text %s size %n',
         category: 'shapes',
         defaults: [localize('hello'), 2]
     };
@@ -585,14 +585,14 @@ SpriteMorph.prototype.initBlocks = function () {
     this.blocks.setExtrusionDiameter =
     {
         type: 'command',
-        spec: 'set extrusion Dia. to %n',
+        spec: 'set extrusion diameter to %n',
         category: 'shapes',
         defaults: [1]
     };
     this.blocks.changeExtrusionDiameter =
     {
         type: 'command',
-        spec: 'change extrusion Dia. by %n',
+        spec: 'change extrusion diameter by %n',
         category: 'shapes',
         defaults: [1]
     };
@@ -628,8 +628,8 @@ SpriteMorph.prototype.initBlocks = function () {
     // sensing
     this.blocks.doAsk =
     {
-        type: 'command',
-        spec: 'request user input %s',
+        type: 'reporter',
+        spec: 'ask %s',
         category: 'sensing'
     };
 };
@@ -717,8 +717,6 @@ SpriteMorph.prototype.blockTemplates = function (category) {
     }
 
     if (cat === 'motion') {
-        blocks.push(block('goHome'));
-        blocks.push('-');
         blocks.push(block('move'));
         blocks.push(block('rotate'));
         blocks.push('-');
@@ -745,12 +743,12 @@ SpriteMorph.prototype.blockTemplates = function (category) {
         blocks.push(block('text2D'));
         blocks.push(block('startDrawing'));
         blocks.push(block('stopDrawing'));
-        //blocks.push(block('setLineWidth'));
-        //blocks.push(block('changeLineWidth'));
         blocks.push(block('startExtrusion'));
         blocks.push(block('stopExtrusion'));
         blocks.push(block('setExtrusionDiameter'));
         blocks.push(block('changeExtrusionDiameter'));
+        blocks.push(block('clear'));
+
     } else if (cat === 'colors') {
         blocks.push(block('pickHue'));
         blocks.push('-');
@@ -759,9 +757,7 @@ SpriteMorph.prototype.blockTemplates = function (category) {
         blocks.push(block('getHSLA'));
 
     } else if (cat === 'control') {
-        // This is the reset block, the selector has been kept
-        // for backwards compatibility
-        blocks.push(block('clear'));
+        blocks.bush(block('reset'));
         blocks.push('-');
         blocks.push(block('receiveGo'));
         blocks.push(block('receiveKey'));
@@ -794,17 +790,11 @@ SpriteMorph.prototype.blockTemplates = function (category) {
         blocks.push('-');
         blocks.push(block('doCallCC'));
         blocks.push(block('reportCallCC'));
-        /*        blocks.push('-');
-                  blocks.push(block('receiveOnClone'));
-                  blocks.push(block('createClone'));
-                  blocks.push(block('removeClone'));
-                  blocks.push('-');*/
+        blocks.push('-');
         blocks.push(block('doPauseAll'));
 
     } else if (cat === 'sensing') {
         blocks.push(block('doAsk'));
-        blocks.push(watcherToggle('getLastAnswer'));
-        blocks.push(block('getLastAnswer'));
         blocks.push('-');
         blocks.push(watcherToggle('reportMouseX'));
         blocks.push(block('reportMouseX'));
@@ -1002,7 +992,7 @@ SpriteMorph.prototype.blockTemplates = function (category) {
             blocks.push('=');
         }
 
-    } else if (cat === 'my blocks') {
+    } else if (cat === 'other') {
         button = new PushButtonMorph(
                 null,
                 function () {
@@ -1183,7 +1173,7 @@ StageMorph.prototype.initScene = function () {
 
     // Axes
     p = new THREE.Vector3(4,0,0);
-    this.scene.axes.push(this.scene.addLineToPointWithColor(p, 0x00E11E, 2));
+    this.scene.axes.push(this.scene.addLineToPointWithColor(p, 0x00FF00, 2));
     p = new THREE.Vector3(0,4,0);
     this.scene.axes.push(this.scene.addLineToPointWithColor(p, 0x0000FF, 2));
     p = new THREE.Vector3(0,0,4);
@@ -1193,7 +1183,7 @@ StageMorph.prototype.initScene = function () {
     var loader = new THREE.TextureLoader(),
         axes = {
             x: { realAxis: 'Z', color: 0xFF0000 },
-            y: { realAxis: 'X', color: 0x00E11E },
+            y: { realAxis: 'X', color: 0x00FF00 },
             z: { realAxis: 'Y', color: 0x0000FF }
         };
 
