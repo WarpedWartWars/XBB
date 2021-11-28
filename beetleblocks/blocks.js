@@ -1,4 +1,5 @@
 // labelPart() proxy
+//delete this comment
 SyntaxElementMorph.prototype.originalLabelPart = SyntaxElementMorph.prototype.labelPart;
 SyntaxElementMorph.prototype.labelPart = function (spec) {
     var part;
