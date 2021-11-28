@@ -626,7 +626,7 @@ SpriteMorph.prototype.initBlocks = function () {
     };
 
     // sensing
-    this.blocks.doAsk =
+    this.blocks.reportAsk =
     {
         type: 'reporter',
         spec: 'ask %s',
@@ -794,7 +794,7 @@ SpriteMorph.prototype.blockTemplates = function (category) {
         blocks.push(block('doPauseAll'));
 
     } else if (cat === 'sensing') {
-        blocks.push(block('doAsk'));
+        blocks.push(block('reportAsk'));
         blocks.push('-');
         blocks.push(watcherToggle('reportMouseX'));
         blocks.push(block('reportMouseX'));
