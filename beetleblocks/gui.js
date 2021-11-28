@@ -57,7 +57,7 @@ IDE_Morph.prototype.createCategories = function () {
 
     function fixColor (button) {
         categories.children.forEach(function (each) {
-            each.labelColor = new Color(110, 110, 110, 100);
+            each.labelColor = new Color(160, 160, 160, 100);
             each.label.drawNew();
         });
         button.labelColor = new Color(220, 220, 220, 100);
