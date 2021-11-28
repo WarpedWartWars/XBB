@@ -77,14 +77,14 @@ IDE_Morph.prototype.createCategories = function () {
 };
 
 // Force flat design
-IDE_Morph.prototype.setDefaultDesign = IDE_Morph.prototype.setFlatDesign;
+// IDE_Morph.prototype.setDefaultDesign = IDE_Morph.prototype.setFlatDesign;
 
 IDE_Morph.prototype.originalInit = IDE_Morph.prototype.init;
 IDE_Morph.prototype.init = function (isAutoFill) {
     this.originalInit();
 
     // Borders are actually just paddings, so we set the bg white to get them to be white
-    this.backgroundColor = new Color(255,255,255);
+    // this.backgroundColor = new Color(255,255,255);
     this.setColor(this.backgroundColor);
     this.cloud = new BeetleCloud('/api', this);
 };
