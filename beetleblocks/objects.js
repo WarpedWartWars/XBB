@@ -361,8 +361,8 @@ SpriteMorph.prototype.blockColor = {
     sound : new Color(207, 74, 217), // we need to keep this color for the zoom blocks dialog
     control : new Color(230, 168, 34),
     sensing : new Color(4, 148, 220),
-    operators : new Color(94, 144, 52),
-    variables : new Color(103, 196, 27),
+    operators : new Color(103, 196, 27),
+    variables : new Color(243, 118, 29),
     lists : new Color(217, 77, 17),
     other : new Color(150, 150, 150),
     'my blocks': new Color(150, 150, 150)
@@ -757,7 +757,7 @@ SpriteMorph.prototype.blockTemplates = function (category) {
         blocks.push(block('getHSLA'));
 
     } else if (cat === 'control') {
-        blocks.bush(block('reset'));
+        blocks.push(block('reset'));
         blocks.push('-');
         blocks.push(block('receiveGo'));
         blocks.push(block('receiveKey'));
