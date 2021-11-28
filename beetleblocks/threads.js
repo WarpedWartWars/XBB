@@ -1,4 +1,4 @@
-Process.prototype.clear = function () {
+Process.prototype.reset = function () {
     var beetle = this.homeContext.receiver.beetle,
         stage = this.homeContext.receiver.parentThatIsA(StageMorph);
 
@@ -17,24 +17,10 @@ Process.prototype.clear = function () {
     stage.reRender();
 };
 
-Process.prototype.goHome = function () {
-    var beetle = this.homeContext.receiver.beetle,
-        stage = this.homeContext.receiver.parentThatIsA(StageMorph),
-        p = new THREE.Vector3(),
-        startPoint = p.copy(beetle.position);
+Process.prototype.clear = function () {
+    var stage = this.homeContext.receiver.parentThatIsA(StageMorph);
 
-    beetle.reset();
-
-    if (beetle.extruding) {
-        this.addPointToExtrusion();
-    }
-
-    if (beetle.drawing) {
-        var p = new THREE.Vector3();
-        var endPoint = p.copy(beetle.position);
-        this.addLineGeom(startPoint, endPoint);
-    }
-
+    stage.clearAll();
     stage.reRender();
 };
 
@@ -779,7 +765,7 @@ Process.prototype.popPosition = function () {
     }
 };
 
-Process.prototype.doAsk = function (data) {
+Process.prototype.reportAsk = function (data) {
     var stage = this.homeContext.receiver.parentThatIsA(StageMorph),
         isStage = true,
         activePrompter;
@@ -815,6 +801,5 @@ Process.prototype.doAsk = function (data) {
             return null;
         }
     }
-    this.pushContext('doYield');
-    this.pushContext();
+    return stage.lastAnswer;
 };
