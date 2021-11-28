@@ -57,7 +57,7 @@ IDE_Morph.prototype.createCategories = function () {
 
     function fixColor (button) {
         categories.children.forEach(function (each) {
-            each.labelColor = new Color(70, 70, 70, 100);
+            each.labelColor = new Color(110, 110, 110, 100);
             each.label.drawNew();
         });
         button.labelColor = new Color(220, 220, 220, 100);
@@ -1031,7 +1031,7 @@ ProjectDialogMorph.prototype.getExamplesProjectList = function () {
     var dir,
         projects = [];
 
-    dir = JSON.parse(this.ide.getURL('https://api.github.com/repos/ericrosenbaum/BeetleBlocks/contents/run/beetleblocks/examples'));
+    dir = JSON.parse(this.ide.getURL('https://api.github.com/repos/WarpedWartWars/XBB/contents/run/beetleblocks/examples'));
     dir.forEach(function (each){
         var dta = {
             name: each.name.replace('.xml',''),
@@ -1343,7 +1343,7 @@ IDE_Morph.prototype.resetBlocksScale = function () {
 IDE_Morph.prototype.originalCreatePalette = IDE_Morph.prototype.createPalette;
 IDE_Morph.prototype.createPalette = function (forSearching) {
     this.originalCreatePalette(forSearching);
-    this.palette.color = new Color(230, 230, 230);
+    // this.palette.color = new Color(230, 230, 230);
     return this.palette;
 };
 
