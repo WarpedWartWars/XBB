@@ -136,8 +136,8 @@ SyntaxElementMorph.prototype.fixLayout = function () {
 CSlotMorph.prototype.originalInit = CSlotMorph.prototype.init;
 CSlotMorph.prototype.init = function() {
     this.originalInit();
-    this.dent += 2;
-    this.inset += 0;
+    this.dent += 0;
+    this.inset += 2;
 };
 
 CSlotMorph.prototype.fixLayout = function () {
