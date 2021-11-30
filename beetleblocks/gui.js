@@ -87,7 +87,8 @@ IDE_Morph.prototype.init = function (isAutoFill) {
     // this.backgroundColor = new Color(255,255,255);
     this.setColor(this.backgroundColor);
     this.cloud = new BeetleCloud('/api', this);
-    this.padding = 1;
+    this.padding = 0;
+    enableRetinaSupport();
 };
 
 // Overriding these functions as we cannot proxy them. They don't return a menu, they create one and pop it up
