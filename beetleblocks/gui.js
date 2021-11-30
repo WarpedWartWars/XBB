@@ -87,7 +87,7 @@ IDE_Morph.prototype.init = function (isAutoFill) {
     // this.backgroundColor = new Color(255,255,255);
     this.setColor(this.backgroundColor);
     this.cloud = new BeetleCloud('/api', this);
-    this.padding = 2;
+    this.padding = 1;
 };
 
 // Overriding these functions as we cannot proxy them. They don't return a menu, they create one and pop it up
@@ -1276,13 +1276,13 @@ IDE_Morph.prototype.fixLayout = function (situation) {
             this.controlBar.setTop(0);
             this.controlBar.setRight(this.width() - padding);
         } else {
-            this.stage.setTop(this.logo.bottom() + padding - 1); // We need to subtract 1 as now the border is white
+            this.stage.setTop(this.logo.bottom() + padding); // We need to subtract 1 as now the border is white
             this.stage.setRight(this.right());
         }
 
         // spriteEditor
         if (this.spriteEditor.isVisible) {
-            this.spriteEditor.setPosition(this.categories.topRight().add(new Point(padding, padding - 1)));
+            this.spriteEditor.setPosition(this.categories.topRight().add(new Point(padding, padding)));
             this.spriteEditor.setExtent(new Point(
                         Math.max(0, this.stage.left() - padding - this.spriteEditor.left()),
                         this.bottom() - this.categories.top()
