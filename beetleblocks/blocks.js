@@ -137,7 +137,7 @@ CSlotMorph.prototype.originalInit = CSlotMorph.prototype.init;
 CSlotMorph.prototype.init = function() {
     this.originalInit();
     this.dent += 0;
-    this.inset += 2;
+    this.inset += 1;
 };
 
 CSlotMorph.prototype.fixLayout = function () {
@@ -145,8 +145,8 @@ CSlotMorph.prototype.fixLayout = function () {
     if (nb) {
         nb.setPosition(
             new Point(
-                this.left() + this.inset + 1, // inner left 
-                this.top() + this.corner + 1 // inner top
+                this.left() + this.inset /*+ 1*/, // inner left 
+                this.top() + this.corner /*+ 1*/ // inner top
             )
         );
         nb.fixLayout();
