@@ -1,5 +1,3 @@
-enableRetinaSupport();
-
 // Morph additions
 
 Morph.fromImageURL = function(url) {
