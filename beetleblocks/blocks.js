@@ -127,7 +127,7 @@ SyntaxElementMorph.prototype.fixLayout = function () {
         var current = this;
         while (current.nextBlock()) {
             var nb = current.nextBlock();
-            if (nb) { nb.setTop(current.bottom()/* - 2*/) }
+            if (nb) { nb.setTop(current.bottom() - 4) }
             current = nb;
         }
     }
@@ -136,8 +136,8 @@ SyntaxElementMorph.prototype.fixLayout = function () {
 CSlotMorph.prototype.originalInit = CSlotMorph.prototype.init;
 CSlotMorph.prototype.init = function() {
     this.originalInit();
-    // this.dent -= 1;
-    // this.inset += 2;
+    this.dent -= 2;
+    this.inset += -1;
 };
 
 CSlotMorph.prototype.fixLayout = function () {
